@@ -1,0 +1,26 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:body>
+        
+        <h:form method="POST" prependId="false">
+            <p:growl id="growl"/>
+            <p:panelGrid columns="2" cellpadding="5" id="inputGrid">
+                <p:outputLabel for="j_username" value="username" />
+                <p:inputText id="j_username"/>
+                <p:outputLabel for="j_password" value="password" />
+                <h:inputSecret id="j_password"/>
+            </p:panelGrid>
+            <p:commandButton id="login" value="Login" action="#{identity.login()}" update="growl,inputGrid"/>
+        </h:form>
+        <p>
+            Tip: you can login with a username/password of 
+            <ul>
+                <li>jane / jane123</li>
+                <li>bob / bob123</li>
+            </ul>
+        </p>
+
+    </h:body>
+</html>
