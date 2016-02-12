@@ -13,8 +13,8 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.faces.event.ActionEvent;
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 import org.picketlink.Identity;
@@ -51,7 +51,6 @@ public class Index {
     }
     
     private User getUser() {
-        
         return (User) identity.getAccount();
     }
 
@@ -133,7 +132,6 @@ public class Index {
     
     public boolean hasAnyCompletedTask(){
         boolean result = getTodos().stream().anyMatch(t -> t.isDone());
-        System.err.println("#### has Any"+ result);
         return result;
     }
     
@@ -146,11 +144,17 @@ public class Index {
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
     
-    public boolean isAnyCompleted(){
-        return getTodos().stream().anyMatch(t -> t.isDone());
-    }
     
-    public void setAnyCompleted(boolean deleteCompleted) {
-        
+    public String getRequestURL()
+{
+    Object request = FacesContext.getCurrentInstance().getExternalContext().getRequest();
+    if(request instanceof HttpServletRequest)
+    {
+            return ((HttpServletRequest) request).getRequestURL().toString();
+    }else
+    {
+        return "";
     }
+}
+    
 }
