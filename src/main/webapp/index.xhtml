@@ -95,6 +95,10 @@
                     <p:column style="width:32px">
                         <p:rowEditor />
                     </p:column>
+                    
+                    <p:column style="width:32px">
+                        <p:commandButton icon="ui-icon-trash" title="Delete" action="#{index.deleteTask(todo.id)}" update="form,deleteAllForm"/>
+                    </p:column>
 
                 </p:dataTable>
         </h:form>
